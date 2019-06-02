@@ -3,10 +3,10 @@ key_name = "my_key"
 public_key = "${file("${var.PATH_TO_PUBLIC_KEY}")}"
 }
 
-resource "aws_instance" "win-example" {
+resource "aws_instance" "win16-srv" {
 ami = "${lookup(var.WIN_AMIS, var.AWS_REGION)}"
 instance_type = "t2.micro"
-key_name = "${aws_key_pair.mykey.key_name}"
+key_name = "${aws_key_pair.my_key.key_name}"
 user_data = <<EOF
 <powershell>
 net user ${var.INSTANCE_USERNAME} ‘${var.INSTANCE_PASSWORD}’ /add /y
