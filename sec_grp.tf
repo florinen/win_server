@@ -1,5 +1,5 @@
 resource "aws_security_group" "Allow-RDP" {
-    name    ="allow-all"
+    name    ="allow-rdp"
     vpc_id  = "${var.VPC_ID}"
   egress {
     from_port   = 0
