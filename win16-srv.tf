@@ -25,10 +25,6 @@ netsh advfirewall firewall add rule name=”WinRM 5986″ protocol=TCP dir=in lo
 net stop winrm
 sc.exe config winrm start=auto
 net start winrm
-<powershell>
-  # Set Administrator password
-  $admin = [adsi]("WinNT://./administrator, user")
-  $admin.psbase.invoke("SetPassword", "${var.INSTANCE_USERNAME}")
 </powershell>
 EOF
     tags = {
