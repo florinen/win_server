@@ -7,7 +7,7 @@ resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "t2.micro"
     key_name = "${aws_key_pair.my_key.key_name}"
-    availability_zone = "${var.SUBNET_ID}"
+    availability_zone = "${var.AZ}"
     user_data = <<EOF
 <powershell>
 net user ${var.INSTANCE_USERNAME} ‘${var.INSTANCE_PASSWORD}’ /add /y
