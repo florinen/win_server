@@ -8,7 +8,7 @@ resource "aws_instance" "win16-srv" {
     instance_type = "${var.INSTANCE_TYPE}"
     key_name = "${aws_key_pair.win_key.key_name}"
     availability_zone = "${var.AZ}"
-    user_data = "$"
+    user_data = "${var.USER_DATA}"
     
     tags = {
       Name = "Win16-SRV"
