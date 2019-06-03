@@ -14,6 +14,6 @@ resource "aws_security_group" "Allow-RDP" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    name = "Allow-RDP"
+    Name = "Allow-RDP"
   }
 }
