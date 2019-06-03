@@ -32,7 +32,7 @@ tags = {
 }
 
 provisioner "file" {
-    source = "test.txt"
+    source = "/home/fnenciu/windows/test.txt"
     destination = "C:/test.txt"
 }
 connection {
