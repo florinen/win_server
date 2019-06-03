@@ -31,8 +31,7 @@ EOF
       Name = "Win16-SRV"
     }
 
-resource "aws_instance" "winrm" {
-  # The connection block tells our provisioner how to
+# The connection block tells our provisioner how to
   # communicate with the resource (instance)
   connection {
     host = "${self.public_ip}"
@@ -45,4 +44,3 @@ resource "aws_instance" "winrm" {
     vpc_security_group_ids=["${aws_security_group.allow-all.id}"]
 
   }
-}
