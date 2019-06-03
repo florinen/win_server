@@ -1,4 +1,4 @@
-resource "aws_security_group" "Allow-RPD" {
+resource "aws_security_group" "Allow-RDP" {
     name    ="allow-all"
     vpc_id  = "${var.VPC_ID}"
   egress {
