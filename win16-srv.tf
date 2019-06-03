@@ -25,23 +25,28 @@ netsh advfirewall firewall add rule name=”WinRM 5986″ protocol=TCP dir=in lo
 net stop winrm
 sc.exe config winrm start=auto
 net start winrm
+<powershell>
+  # Set Administrator password
+  $admin = [adsi]("WinNT://./administrator, user")
+  $admin.psbase.invoke("SetPassword", "${var.INSTANCE_USERNAME}")
 </powershell>
 EOF
-tags = {
-    Name = "Win16-SRV"
-}
+    tags = {
+      Name = "Win16-SRV"
+    }
 
-provisioner "file" {
-    source = "/home/fnenciu/windows/config/test.txt"
-    destination = "C:/test.txt"
-}
-connection {
+resource "aws_instance" "winrm" {
+  # The connection block tells our provisioner how to
+  # communicate with the resource (instance)
+  connection {
     host = "${self.public_ip}"
     type = "winrm"
     timeout = "10m"
     user = "${var.INSTANCE_USERNAME}"
     password = "${var.INSTANCE_PASSWORD}"
-  }
-vpc_security_group_ids=["${aws_security_group.allow-all.id}"]
+    
+    }
+    vpc_security_group_ids=["${aws_security_group.allow-all.id}"]
 
+  }
 }
