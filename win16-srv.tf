@@ -26,6 +26,9 @@ sc.exe config winrm start=auto
 net start winrm
 </powershell>
 EOF
+tags = {
+    name = "Win16-SRV"
+}
 
 provisioner "file" {
     source = "test.txt"
