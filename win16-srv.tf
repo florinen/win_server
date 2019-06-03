@@ -1,12 +1,12 @@
 
-resource "aws_key_pair" "my_key" {
-    key_name = "my_key"
+resource "aws_key_pair" "win_key" {
+    key_name = "win_key"
     public_key = "${file("/home/fnenciu/windows/win_key.pub")}"
 }
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "t2.micro"
-    key_name = "${aws_key_pair.my_key.key_name}"
+    key_name = "${aws_key_pair.win_key.key_name}"
     availability_zone = "${var.AZ}"
     user_data = <<EOF
 <powershell>
