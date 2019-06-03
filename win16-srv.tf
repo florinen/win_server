@@ -42,6 +42,8 @@ EOF
     
     }
     vpc_security_group_ids=["${aws_security_group.Allowed_Ports.id}"]
+
+}
 resource "aws_eip" "eip" {
     instance = "${aws_instance.win16-srv.id}"
     
@@ -49,6 +51,3 @@ resource "aws_eip" "eip" {
       Name = "Static IP Win16-srv"
   }
    }
-
-
-}
