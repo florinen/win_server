@@ -47,7 +47,7 @@ EOF
 resource "aws_eip" "eip" {
     instance = "${aws_instance.win16-srv.id}"
     
-    tags {
+    tags = {
       Name = "Static IP Win16-srv"
   }
    }
