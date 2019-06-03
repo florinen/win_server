@@ -13,6 +13,8 @@ protocol = "tcp"
 cidr_blocks = ["0.0.0.0/0"]
 }
 tags {
-Name = "allow-RDP"
+    name = "Allow-RDP"
 }
+
+
 }
