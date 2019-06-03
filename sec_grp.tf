@@ -1,4 +1,4 @@
-resource "aws_security_group" "allow-all" {
+resource "aws_security_group" "Allow-RPD" {
     name    ="allow-all"
     vpc_id  = "${var.VPC_ID}"
   egress {
@@ -9,11 +9,11 @@ resource "aws_security_group" "allow-all" {
   }
   ingress {
     from_port   = 0
-    to_port     = 6556
+    to_port     = "RDP"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    name = "Allow-all"
+    name = "Allow-RDP"
   }
 }
