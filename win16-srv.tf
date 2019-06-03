@@ -28,7 +28,7 @@ net start winrm
 </powershell>
 EOF
 tags = {
-    name = "Win16-SRV"
+    Name = "Win16-SRV"
 }
 
 provisioner "file" {
