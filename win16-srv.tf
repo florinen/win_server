@@ -1,13 +1,13 @@
 resource "aws_key_pair" "my_key" {
-key_name = "my_key"
-public_key = "${file("${var.PATH_TO_PUBLIC_KEY}")}"
+    key_name = "my_key"
+    public_key = "${file("${var.PATH_TO_PUBLIC_KEY}")}"
 }
 
 resource "aws_instance" "win16-srv" {
-ami = "${var.WIN_AMIS}"
-instance_type = "t2.micro"
-key_name = "${aws_key_pair.my_key.key_name}"
-user_data = <<EOF
+    ami = "${var.WIN_AMIS}"
+    instance_type = "t2.micro"
+    key_name = "${aws_key_pair.my_key.key_name}"
+    user_data = <<EOF
 <powershell>
 net user ${var.INSTANCE_USERNAME} ‘${var.INSTANCE_PASSWORD}’ /add /y
 net localgroup administrators ${var.INSTANCE_USERNAME} /add
@@ -28,15 +28,16 @@ net start winrm
 EOF
 
 provisioner "file" {
-source = "test.txt"
-destination = "C:/test.txt"
+    source = "test.txt"
+    destination = "C:/test.txt"
 }
 connection {
-type = "winrm"
-timeout = "10m"
-user = "${var.INSTANCE_USERNAME}"
-password = "${var.INSTANCE_PASSWORD}"
-}
+    host = "${self.public_ip}"
+    type = "winrm"
+    timeout = "10m"
+    user = "${var.INSTANCE_USERNAME}"
+    password = "${var.INSTANCE_PASSWORD}"
+  }
 vpc_security_group_ids=["${aws_security_group.allow-all.id}"]
 
 }
