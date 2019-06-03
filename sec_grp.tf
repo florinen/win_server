@@ -12,7 +12,7 @@ to_port = 6556
 protocol = "tcp"
 cidr_blocks = ["0.0.0.0/0"]
 }
-tags {
+tags = {
     name = "Allow-RDP"
 }
 
