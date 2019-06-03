@@ -41,6 +41,6 @@ EOF
     password = "${var.INSTANCE_PASSWORD}"
     
     }
-    vpc_security_group_ids=["${aws_security_group.Allow-RDP.id}"]
+    vpc_security_group_ids=["${aws_security_group.Allowed_Ports.id}"]
 
   }
