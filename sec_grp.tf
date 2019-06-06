@@ -14,12 +14,13 @@ resource "aws_security_group" "Allowed_Ports" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 65535
+    protocol = "-1"
+    security_groups = "${var.SG_GRP}"
+    #cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "Allow-RDP"
+    Name = "Allowed-Ports"
   }
 }
