@@ -45,7 +45,7 @@ resource "aws_instance" "win16-srv" {
     type        = "winrm"
     timeout     = "10m"
     user        = "Administrator"
-    password    = ""
+    password    = "test123-Admin"
     agent       = "false"
     }
   }
