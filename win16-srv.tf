@@ -46,6 +46,7 @@ resource "aws_instance" "win16-srv" {
     timeout = "10m"
     user = "${var.INSTANCE_USERNAME}"
     password = "${var.INSTANCE_PASSWORD}"
+    agent       = "false"
     }
   }
 
