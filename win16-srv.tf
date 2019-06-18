@@ -8,25 +8,8 @@ resource "aws_instance" "win16-srv" {
     instance_type = "${var.INSTANCE_TYPE}"
     key_name = "${aws_key_pair.my_key.key_name}"
     availability_zone = "${var.AZ}"
-    user_data = <<EOF
-<powershell>
-net user ${var.INSTANCE_USERNAME} ‘${var.INSTANCE_PASSWORD}’ /add /y
-net localgroup administrators ${var.INSTANCE_USERNAME} /add
-
-winrm quickconfig -q
-winrm set winrm/config/winrs ‘@{MaxMemoryPerShellMB=”300″}’
-winrm set winrm/config ‘@{MaxTimeoutms=”1800000″}’
-winrm set winrm/config/service ‘@{AllowUnencrypted=”true”}’
-winrm set winrm/config/service/auth ‘@{Basic=”true”}’
-choco install -y Install-WindowsFeature -Name GPMC,RSAT-AD-PowerShell,RSAT-AD-AdminCenter,RSAT-ADDS-Tools,RSAT-DNS-Server
-netsh advfirewall firewall add rule name=”WinRM 5985″ protocol=TCP dir=in localport=5985 action=allow
-netsh advfirewall firewall add rule name=”WinRM 5986″ protocol=TCP dir=in localport=5986 action=allow
-
-net stop winrm
-sc.exe config winrm start=auto
-net start winrm
-</powershell>
-EOF
+    
+ 
 tags = {
     name = "Win16-SRV"
 }
