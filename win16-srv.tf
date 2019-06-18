@@ -9,9 +9,6 @@ data "template_file" "userdata" {
 vars = {
     password = "${var.INSTANCE_PASSWORD}"
    }
-vars = {
-    user     = "${var.INSTANCE_USERNAME}"
-   } 
 }
 
 resource "aws_instance" "win16-srv" {
