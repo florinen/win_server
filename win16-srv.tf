@@ -33,9 +33,3 @@ connection {
  }
  vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
 }
-vars {
-    password = "${var.INSTANCE_PASSWORD}"
-}
-vars {
-    user     = "${var.INSTANCE_USERNAME}"
-} 
