@@ -1,7 +1,13 @@
 <powershell>
-net user '${var.INSTANCE_USERNAME}' '${var.INSTANCE_PASSWORD}' /add /y
-net localgroup administrators '${var.INSTANCE_USERNAME}' /add
+$Username = "${var.INSTANCE_USERNAME}"
+$Password = "${var.INSTANCE_PASSWORD}"
+$group = "Administrators"
+& NET USER $Username $Password /add /y /expires:never
+& NET LOCALGROUP $group $Username /add
+& WMIC USERACCOUNT WHERE "Name='$Username'" SET PasswordExpires=FALSE
 
+# Enable PSRemoting
+Enable-PSRemoting -SkipNetworkProfileCheck -Force
 winrm quickconfig -q
 winrm set winrm/config/winrs '@{MaxMemoryPerShellMB=”300″}'
 winrm set winrm/config '@{MaxTimeoutms=”1800000″}'
