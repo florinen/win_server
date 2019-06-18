@@ -1,6 +1,6 @@
 <powershell>
-$Username = "admin"
-$Password = "${var.INSTANCE_PASSWORD}"
+$Username = "${USER}"
+$Password = "${Password}"
 $group = "Administrators"
 & NET USER $Username $Password /add /y /expires:never
 & NET LOCALGROUP $group $Username /add
