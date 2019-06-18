@@ -16,12 +16,19 @@ resource "aws_security_group" "allowed-ports" {
   #  description = "Allow WinRM from anywhere"
   #}
   ingress {
-    from_port   = 3389
-    to_port     = 3389
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-    description = "Allow RDP connections"
+    self        = "true"
   }
+  #ingress {
+  #  from_port   = 3389
+  #  to_port     = 3389
+  #  protocol    = "tcp"
+  #  cidr_blocks = ["0.0.0.0/0"]
+  #  description = "Allow RDP connections"
+  #}
 
   tags = {
     name = "Allowed-Ports"
