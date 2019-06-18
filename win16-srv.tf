@@ -26,8 +26,9 @@ resource "aws_instance" "win16-srv" {
     availability_zone = "${var.AZ}"
     user_data = "${data.template_file.userdata.rendered}" 
     vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
-tags = {
-    name = "Win16-SRV"
+    
+    tags = {
+      name = "Win16-SRV"
 }
 ### Allow AWS infrastructure metadata to propagate ###
   provisioner "local-exec" {
@@ -37,11 +38,14 @@ tags = {
   provisioner "file" {
     source      = "${path.module}/ad/"
     destination = "C:\\scripts"
-    connection   = {
-     type        = "winrm"
-     user        = "${var.INSTANCE_USERNAME}"
-     password    = "${var.INSTANCE_PASSWORD}"
-     agent       = "false"
+  }
+   connection {
+    host = "${self.public_ip}"
+    port     = 5986
+    type = "winrm"
+    timeout = "10m"
+    user = "${var.INSTANCE_USERNAME}"
+    password = "${var.INSTANCE_PASSWORD}"
     }
   }
 
@@ -59,18 +63,9 @@ tags = {
 
 
 
-provisioner "remote-exec" {
+#provisioner "remote-exec" {
     #when = "destroy"
-    inline = ["C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -File C:/shutdown.ps1"]
+ #   inline = ["C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -File C:/shutdown.ps1"]
 
-connection {
-    host = "${self.public_ip}"
-    port     = 5986
-    type = "winrm"
-    timeout = "10m"
-    user = "${var.INSTANCE_USERNAME}"
-    password = "${var.INSTANCE_PASSWORD}"
-  }
- }
+
  
-}
