@@ -5,6 +5,13 @@ resource "aws_key_pair" "my_key" {
 }
 data "template_file" "userdata" {
   template = "${file("userdata.tpl")}"  
+
+vars {
+    password = "${var.INSTANCE_PASSWORD}"
+   }
+vars {
+    user     = "${var.INSTANCE_USERNAME}"
+   } 
 }
 
 resource "aws_instance" "win16-srv" {
@@ -12,7 +19,7 @@ resource "aws_instance" "win16-srv" {
     instance_type = "${var.INSTANCE_TYPE}"
     key_name = "${aws_key_pair.my_key.key_name}"
     availability_zone = "${var.AZ}"
-    user_data = "${data.template_file.userdata.rendered}" 
+   # user_data = "${data.template_file.userdata.rendered}" 
 
 tags = {
     name = "Win16-SRV"
