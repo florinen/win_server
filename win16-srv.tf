@@ -5,7 +5,7 @@ resource "aws_key_pair" "my_key" {
 }
 data "template_file" "userdata" {
   template = "${file("userdata.tpl")}"  
-  vars {
+  vars = {
       variable = "${var.INSTANCE_PASSWORD}"
   }
 }
