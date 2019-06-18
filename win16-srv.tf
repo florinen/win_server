@@ -11,11 +11,11 @@ data "template_file" "userdata" {
    <powershell>
      netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
      $admin = [ADSI]("WinNT://./administrator, user")
-     $admin.SetPassword("${var.INSTANCE_PASSWORD}")
+     $admin.SetPassword("${var.admin_password}")
    </powershell>
 EOF
   vars = {
-      INSTANCE_PASSWORD = "${var.INSTANCE_PASSWORD}"
+      admin_password = "${var.admin_password}"
   }
 }
 
@@ -40,12 +40,12 @@ resource "aws_instance" "win16-srv" {
     destination = "C:\\scripts"
   }
    connection {
-    host = "${self.public_ip}"
-    #port     = 5986
-    type = "winrm"
-    timeout = "10m"
-    user = "${var.INSTANCE_USERNAME}"
-    password = "${var.INSTANCE_PASSWORD}"
+    host        = "${self.public_ip}"
+    #port       = 5986
+    type        = "winrm"
+    timeout     = "10m"
+    user        = "${var.admin_user}"
+    password    = "${var.admin_password}"
     agent       = "false"
     }
   }
