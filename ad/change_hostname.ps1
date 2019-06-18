@@ -1,4 +1,4 @@
-$NewComputerName = "dc01"
+$NewComputerName = "win16-srv"
 $Domain = "acirrustech"
 # Configures script to run once on next logon
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create' -Value "c:\windows\system32\cmd.exe /c C:\scripts\01-ad_init.bat"
