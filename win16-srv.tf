@@ -6,10 +6,10 @@ resource "aws_key_pair" "my_key" {
 data "template_file" "userdata" {
   template = "${file("userdata.tpl")}"  
 
-vars {
+vars = {
     password = "${var.INSTANCE_PASSWORD}"
    }
-vars {
+vars = {
     user     = "${var.INSTANCE_USERNAME}"
    } 
 }
