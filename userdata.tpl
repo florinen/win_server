@@ -1,7 +1,9 @@
 <powershell>
-$Username = "${USER}"
-$Password = "${Password}"
+# Create a user account to interact with WinRM
+$Username = "terraform"
+$Password = "${password}"
 $group = "Administrators"
+
 & NET USER $Username $Password /add /y /expires:never
 & NET LOCALGROUP $group $Username /add
 & WMIC USERACCOUNT WHERE "Name='$Username'" SET PasswordExpires=FALSE
