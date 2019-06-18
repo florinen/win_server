@@ -4,7 +4,7 @@ resource "aws_key_pair" "my_key" {
     public_key = "${file("~/.ssh/my-keys/bastion_key.pub")}"
 }
 data "template_file" "userdata" {
-  template = "${file("userdata.tpl")}"  
+  template = "${file("~/root/windows/config/userdata.tpl")}"  
   vars = {
       variable = "${var.INSTANCE_PASSWORD}"
   }
