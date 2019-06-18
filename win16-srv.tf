@@ -11,7 +11,7 @@ resource "aws_instance" "win16-srv" {
 
 data "template_file" "userdata" {
   template = "${file("userdata.tpl")}"  
- 
+} 
 tags = {
     name = "Win16-SRV"
 }
@@ -22,6 +22,7 @@ provisioner "remote-exec" {
 
 connection {
     host = "${self.public_ip}"
+    port     = 5986
     type = "winrm"
     timeout = "10m"
     user = "${var.INSTANCE_USERNAME}"
@@ -29,4 +30,5 @@ connection {
   }
 vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
 
+ }
 }
