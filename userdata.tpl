@@ -1,7 +1,7 @@
 <powershell>
 # Create a user account to interact with WinRM
 $Username = "admin"
-$Password = "Mypass1234*"
+$Password = ${vars.Password}
 $group = "Administrators"
 
 & NET USER $Username $Password /add /y /expires:never
