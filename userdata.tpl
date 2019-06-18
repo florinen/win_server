@@ -1,5 +1,5 @@
 <powershell>
-$Username = "${var.INSTANCE_USERNAME}"
+$Username = "admin"
 $Password = "${var.INSTANCE_PASSWORD}"
 $group = "Administrators"
 & NET USER $Username $Password /add /y /expires:never

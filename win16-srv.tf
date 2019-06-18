@@ -5,6 +5,10 @@ resource "aws_key_pair" "my_key" {
 }
 data "template_file" "userdata" {
   template = "${file("userdata.tpl")}"  
+}
+vars {
+    password = "${var.INSTANCE_PASSWORD}"
+    user     = "${var.INSTANCE_USERNAME}"
 } 
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
