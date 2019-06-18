@@ -36,12 +36,12 @@ resource "aws_instance" "win16-srv" {
   }
   ### Copy Scripts to EC2 instance ###
   provisioner "file" {
-    source      = "${path.module}/ad/"
+    source      = "~/windows/win_server/ad/"
     destination = "C:\\scripts"
   }
    connection {
     host = "${self.public_ip}"
-    port     = 5986
+    #port     = 5986
     type = "winrm"
     timeout = "10m"
     user = "${var.INSTANCE_USERNAME}"
