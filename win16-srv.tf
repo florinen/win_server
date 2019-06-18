@@ -39,6 +39,6 @@ connection {
     user = "${var.INSTANCE_USERNAME}"
     password = "${var.INSTANCE_PASSWORD}"
   }
-vpc_security_group_ids=["${aws_security_group.allow-all.id}"]
+vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
 
 }
