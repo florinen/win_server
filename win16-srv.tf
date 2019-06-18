@@ -20,7 +20,7 @@ tags = {
 }
 
 provisioner "remote-exec" {
-    when = "destroy"
+    #when = "destroy"
     inline = ["C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -File C:/shutdown.ps1"]
 
 connection {
