@@ -7,4 +7,6 @@ variable "WIN_AMIS" { }
 variable "PATH_TO_PRIVATE_KEY" { default = "~/.ssh/id_rsa" } 
 variable "PATH_TO_PUBLIC_KEY" { default = "~/.ssh/id_rsa.pub" } 
 variable "INSTANCE_USERNAME" { default = "admin" } 
-variable "INSTANCE_PASSWORD" { }
+variable "INSTANCE_PASSWORD" {
+    description = "Windows Administrator password to login as"
+ }
