@@ -3,15 +3,16 @@ resource "aws_key_pair" "my_key" {
     key_name = "my_key"
     public_key = "${file("~/.ssh/my-keys/bastion_key.pub")}"
 }
+data "template_file" "userdata" {
+  template = "${file("userdata.tpl")}"  
+} 
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "${var.INSTANCE_TYPE}"
     key_name = "${aws_key_pair.my_key.key_name}"
     availability_zone = "${var.AZ}"
 
-data "template_file" "userdata" {
-  template = "${file("userdata.tpl")}"  
-} 
+
 tags = {
     name = "Win16-SRV"
 }
