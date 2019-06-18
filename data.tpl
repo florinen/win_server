@@ -5,6 +5,7 @@
    <powershell>
      netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
      $admin = [ADSI]("WinNT://./administrator, user")
-     $admin.SetPassword("${var.INSTANCE_PASSWORD}")
+     $admin.SetPassword("${INSTANCE_PASSWORD}")
    </powershell>
 EOF
+
