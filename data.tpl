@@ -1,4 +1,4 @@
-
+INSTANCE_PASSWORD=${INSTANCE_PASSWORD}
 
 
 <script>
