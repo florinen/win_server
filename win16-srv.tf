@@ -44,7 +44,7 @@ resource "aws_instance" "win16-srv" {
     #port       = 5986
     type        = "winrm"
     timeout     = "10m"
-    user        = "${var.admin_user}"
+    user        = "Administrator"
     password    = "${var.admin_password}"
     agent       = "false"
     }
