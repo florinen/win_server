@@ -6,12 +6,7 @@ resource "aws_key_pair" "my_key" {
 data "template_file" "userdata" {
   template = "${file("userdata.tpl")}"  
 }
-vars {
-    password = "${var.INSTANCE_PASSWORD}"
-}
-vars {
-    user     = "${var.INSTANCE_USERNAME}"
-} 
+
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "${var.INSTANCE_TYPE}"
@@ -38,3 +33,9 @@ connection {
  }
  vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
 }
+vars {
+    password = "${var.INSTANCE_PASSWORD}"
+}
+vars {
+    user     = "${var.INSTANCE_USERNAME}"
+} 
