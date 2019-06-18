@@ -5,7 +5,7 @@ resource "aws_key_pair" "my_key" {
 }
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
-    instance_type = "t2.micro"
+    instance_type = "${var.INSTANCE_TYPE}"
     key_name = "${aws_key_pair.my_key.key_name}"
     availability_zone = "${var.AZ}"
     user_data = <<EOF
@@ -18,7 +18,7 @@ winrm set winrm/config/winrs ‘@{MaxMemoryPerShellMB=”300″}’
 winrm set winrm/config ‘@{MaxTimeoutms=”1800000″}’
 winrm set winrm/config/service ‘@{AllowUnencrypted=”true”}’
 winrm set winrm/config/service/auth ‘@{Basic=”true”}’
-
+choco install -y Install-WindowsFeature -Name GPMC,RSAT-AD-PowerShell,RSAT-AD-AdminCenter,RSAT-ADDS-Tools,RSAT-DNS-Server
 netsh advfirewall firewall add rule name=”WinRM 5985″ protocol=TCP dir=in localport=5985 action=allow
 netsh advfirewall firewall add rule name=”WinRM 5986″ protocol=TCP dir=in localport=5986 action=allow
 
@@ -31,10 +31,7 @@ tags = {
     name = "Win16-SRV"
 }
 
-provisioner "file" {
-    source = "test.txt"
-    destination = "C:/test.txt"
-}
+ 
 connection {
     host = "${self.public_ip}"
     type = "winrm"
