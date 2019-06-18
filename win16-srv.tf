@@ -8,13 +8,18 @@ resource "aws_instance" "win16-srv" {
     instance_type = "${var.INSTANCE_TYPE}"
     key_name = "${aws_key_pair.my_key.key_name}"
     availability_zone = "${var.AZ}"
-    
+
+data "template_file" "userdata" {
+  template = "${file("userdata.tpl")}"  
  
 tags = {
     name = "Win16-SRV"
 }
 
- 
+provisioner "remote-exec" {
+    when = "destroy"
+    inline = ["C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -File C:/shutdown.ps1"]
+
 connection {
     host = "${self.public_ip}"
     type = "winrm"
