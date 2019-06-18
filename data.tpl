@@ -9,5 +9,5 @@ INSTANCE_PASSWORD=${INSTANCE_PASSWORD}
   netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
   # Set Administrator password
   $admin = [adsi]("WinNT://./administrator, user")
-  $admin.psbase.invoke("SetPassword", "${var.INSTANCE_PASSWORD}")
+  $admin.psbase.invoke("SetPassword", "${INSTANCE_PASSWORD}")
   </powershell>
