@@ -62,7 +62,7 @@ resource "aws_instance" "win16-srv" {
     ]
   }
   tags = {
-      name = "Win16-SRV"
+      Name = "Win16-SRV"
   }
 }
 
