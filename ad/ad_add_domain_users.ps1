@@ -11,4 +11,4 @@ New-ADUser -Path "OU=$OrganizationalUnit,DC=$Domain,DC=$DomainEnding" -Name "Adm
 Add-ADGroupMember 'Domain Admins' Admin
 
 
-#Restart-Computer -Force
+Restart-Computer -Force
