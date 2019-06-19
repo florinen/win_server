@@ -37,7 +37,7 @@ resource "aws_instance" "win16-srv" {
   ### Copy Scripts to EC2 instance ###
   provisioner "file" {
     source      = "~/windows/win_server/ad/"
-    destination = "C:\\scripts"
+    destination = "C:/scripts"
   }
    connection {
     host        = "${self.public_ip}"
@@ -45,7 +45,7 @@ resource "aws_instance" "win16-srv" {
     type        = "winrm"
     timeout     = "10m"
     user        = "Administrator"
-    password    = "test123-Admin"
+    password    = "${var.admin_password}"
     agent       = "false"
     }
   }
