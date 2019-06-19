@@ -11,7 +11,7 @@ $LogPath = "C:\Windows\NTDS"
 $SysvolPath = "C:\Windows\SYSVOL"
 
 ## Configures script to run once on next logon
-Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_init.bat"
+Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Change_hostname' -Value "c:\windows\system32\cmd.exe /c C:\scripts\change_hostname.bat"
  
 
 
@@ -37,6 +37,6 @@ Install-windowsfeature -name AD-Domain-Services -IncludeManagementTools
 Import-Module ADDSDeployment
 
 Write-Host " - Creating new AD-Domain-Services Forest..."
-Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
+Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -NoRebootOnCompletion:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
 
 Write-Host " - Done.`n"

@@ -12,3 +12,5 @@ Add-ADGroupMember 'Domain Admins' Admin
 
 
 Restart-Computer -Force
+update
+
