@@ -57,8 +57,7 @@ resource "aws_instance" "win16-srv" {
      }
      inline = [
       "powershell.exe Set-ExecutionPolicy RemoteSigned -force",
-      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1",
-      "powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\\Scripts\\change_hostname.ps1"
+      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1"
       
     ]
   }
