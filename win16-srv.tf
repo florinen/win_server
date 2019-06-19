@@ -19,7 +19,13 @@ resource "aws_instance" "win16-srv" {
     availability_zone = "${var.AZ}"
     user_data = "${data.template_file.userdata.rendered}" 
     vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
-    
+
+    root_block_device {
+        volume_size = "60"
+      }
+  
+}
+
     
 ### Allow AWS infrastructure metadata to propagate ###
   provisioner "local-exec" {
