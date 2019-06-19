@@ -1,1 +1,1 @@
-powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\Scripts\01-ad_init.ps1
+powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\Scripts\ad_init.ps1
