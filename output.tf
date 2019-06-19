@@ -8,7 +8,7 @@ output "instance_ips" {
 #output "ip" {
 #    description = "EIP"
 #  value = "${aws_eip.ip.public_ip}"
-}
+#}
 
 output "server_id" {
     description = "Win16-srv id"
