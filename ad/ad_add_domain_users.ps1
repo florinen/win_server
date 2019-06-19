@@ -2,6 +2,9 @@ $OrganizationalUnit = "TestUser"
 $Domain = "acirrustech"
 $DomainEnding = "com"
 
+# Configures script to run once on next logon
+#Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_add_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
+
 Import-Module ActiveDirectory
 
 New-ADOrganizationalUnit -path "dc=$Domain, dc=$DomainEnding" -name $OrganizationalUnit -ProtectedFromAccidentalDeletion:$false
