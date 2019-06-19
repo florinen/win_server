@@ -18,9 +18,7 @@ resource "aws_instance" "win16-srv" {
     user_data = "${data.template_file.userdata.rendered}" 
     vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
     
-    tags = {
-      name = "Win16-SRV"
-}
+    
 ### Allow AWS infrastructure metadata to propagate ###
   provisioner "local-exec" {
     command = "sleep 60"
@@ -29,7 +27,7 @@ resource "aws_instance" "win16-srv" {
   provisioner "file" {
     source      = "~/windows/win_server/ad/"
     destination = "C:\\scripts"
-  }
+ 
    connection {
     host        = "${self.public_ip}"
     #port       = 5986
@@ -39,16 +37,11 @@ resource "aws_instance" "win16-srv" {
     password    = "${var.admin_password}"
     agent       = "false"
     }
+  }
 
 ### Set Execution Policy to Remote-Signed, Configure Active Directory ###
   provisioner "remote-exec" {
-    inline = [
-      "powershell.exe Set-ExecutionPolicy RemoteSigned -force",
-      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1",
-      "powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\\Scripts\\ad_add_domain_users.ps1"
-    ]
-  }
-  
+    
     connection = {
       host        = "${self.public_ip}"
       type        = "winrm"
@@ -56,8 +49,16 @@ resource "aws_instance" "win16-srv" {
       password    = "${var.admin_password}"
       agent       = "false"
      }
-    
+     inline = [
+      "powershell.exe Set-ExecutionPolicy RemoteSigned -force",
+      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1",
+      "powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\\Scripts\\ad_add_domain_users.ps1"
+    ]
   }
+  tags = {
+      name = "Win16-SRV"
+  }
+}
 
 
 
