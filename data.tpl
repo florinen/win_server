@@ -10,5 +10,10 @@ admin_password=${admin_password}
      netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=any localip=any action=allow
      $admin = [ADSI]("WinNT://./administrator, user")
      $admin.SetPassword("${admin_password}")
+     
+     Write-Host "Restarting WinRM Service..."
+     Stop-Service winrm
+     Set-Service winrm -StartupType "Automatic"
+     Start-Service winrm
    </powershell>
 EOF

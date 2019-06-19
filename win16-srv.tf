@@ -3,10 +3,12 @@ resource "aws_key_pair" "my_key" {
     key_name = "my_key"
     public_key = "${file("~/.ssh/my-keys/bastion_key.pub")}"
 }
+
+### Bootstrap instance for WinRM over HTTP with basic authentication
 data "template_file" "userdata" {
   template =   "${file("~/windows/win_server/data.tpl")}"
   vars = {
-      admin_password = "${var.admin_password}"
+      admin_password = "${var.admin_password}"   #pass variables into template
   }
 }
 
