@@ -35,13 +35,25 @@ resource "aws_instance" "win16-srv" {
     #port       = 5986
     type        = "winrm"
     timeout     = "10m"
-    user        = "Administrator"
+    user        = "${var.admin_user}"
     password    = "${var.admin_password}"
     agent       = "false"
     }
+
+### Set Execution Policy to Remote-Signed, Configure Active Directory ###
+  provisioner "remote-exec" {
+    connection = {
+     type        = "winrm"
+     user        = "Administrator"
+     password    = "${var.admin_password}"
+     agent       = "false"
+    }
+    inline = [
+      "powershell.exe Set-ExecutionPolicy RemoteSigned -force",
+      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1"
+    ]
   }
-
-
+}
 
 
 

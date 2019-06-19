@@ -2,11 +2,13 @@
 #DomainMode / ForestMode - Server 2003: 2 or Win2003 / Server 2008: 3 or Win2008 / Server 2008 R2: 4 or Win2008R2 / Server 2012: 5 or Win2012 / Server 2012 R2: 6 or Win2012R2
 $DomainName = "acirrustech.com"
 $NetBIOSName = "acirrustech"
-$DomainMode = "Win16"
-$ForestMode = "Win16"
+$DomainMode = "Win2016"
+$ForestMode = "Win2016"
 $SafeModeAdministratorPassword = ConvertTo-SecureString "test123-Admin" -AsPlaintext -Force
 $AutoLoginUser = "Administrator"
 $AutoLoginPassword = "test123-Admin"
+$LogPath = "C:\Windows\NTDS"
+$SysvolPath = "C:\Windows\SYSVOL"
 
 ## Configures script to run once on next logon
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD-Step2' -Value "c:\windows\system32\cmd.exe /c C:\scripts\02-ad_add_domain_users.bat"
@@ -27,11 +29,12 @@ Set-ItemProperty $RegPath "AutoLogonCount" -Value "1" -type DWord
 Write-Host "Windows Server 2016 - Active Directory Installation"
 
 Write-Host " - Installing AD-Domain-Services..."
+Install-WindowsFeature -Name GPMC,RSAT-AD-PowerShell,RSAT-AD-AdminCenter,RSAT-ADDS-Tools,RSAT-DNS-Server
 Install-windowsfeature -name AD-Domain-Services -IncludeManagementTools
 
 Import-Module ADDSDeployment
 
 Write-Host " - Creating new AD-Domain-Services Forest..."
-Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -Confirm:$False
+Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
 
 Write-Host " - Done.`n"
