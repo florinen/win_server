@@ -37,7 +37,7 @@ resource "aws_instance" "win16-srv" {
   ### Copy Scripts to EC2 instance ###
   provisioner "file" {
     source      = "~/windows/win_server/ad/"
-    destination = "C:/scripts"
+    destination = "C:\\scripts"
   }
    connection {
     host        = "${self.public_ip}"
