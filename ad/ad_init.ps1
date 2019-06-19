@@ -35,6 +35,6 @@ Install-windowsfeature -name AD-Domain-Services -IncludeManagementTools
 Import-Module ADDSDeployment
 
 Write-Host " - Creating new AD-Domain-Services Forest..."
-Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
+Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Force:$true -Confirm:$False
 
 Write-Host " - Done.`n"
