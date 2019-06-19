@@ -1,9 +1,9 @@
 #Reference: http://technet.microsoft.com/en-us/library/hh472162.aspx
-#DomainMode / ForestMode - Server 2003: 2 or Win2003 / Server 2008: 3 or Win2008 / Server 2008 R2: 4 or Win2008R2 / Server 2012: 5 or Win2012 / Server 2012 R2: 6 or Win2012R2
+#DomainMode / ForestMode - Server 2003: 2 or Win2003 / Server 2008: 3 or Win2008 / Server 2008 R2: 4 or Win2008R2 / Server 2012: 5 or Win2012 / Server 2012 R2: 6 or Win2012R2 / Windows Server 2016: 7 or WinThreshold
 $DomainName = "acirrustech.com"
 $NetBIOSName = "acirrustech"
-$DomainMode = "Win2016"
-$ForestMode = "Win2016"
+$DomainMode = "WinThreshold"
+$ForestMode = "WinThreshold"
 $SafeModeAdministratorPassword = ConvertTo-SecureString "test123-Admin" -AsPlaintext -Force
 $AutoLoginUser = "Administrator"
 $AutoLoginPassword = "test123-Admin"
