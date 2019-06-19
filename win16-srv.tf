@@ -28,21 +28,21 @@ resource "aws_instance" "win16-srv" {
     source      = "~/windows/win_server/ad/"
     destination = "C:\\scripts"
  
-   connection {
-    host        = "${self.public_ip}"
+    connection {
+      host        = "${self.public_ip}"
     #port       = 5986
-    type        = "winrm"
-    timeout     = "10m"
-    user        = "${var.admin_user}"
-    password    = "${var.admin_password}"
-    agent       = "false"
-    }
+      type        = "winrm"
+      timeout     = "10m"
+      user        = "${var.admin_user}"
+      password    = "${var.admin_password}"
+      agent       = "false"
+      }
   }
 
 ### Set Execution Policy to Remote-Signed, Configure Active Directory ###
   provisioner "remote-exec" {
     
-    connection = {
+    connection {
       host        = "${self.public_ip}"
       type        = "winrm"
       user        = "Administrator"
