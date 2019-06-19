@@ -12,7 +12,7 @@ $SysvolPath = "C:\Windows\SYSVOL"
 
 ## Configures script to run once on next logon
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_init.bat"
-Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD-Step2' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
+ 
 
 
 # Registry path for Autologon configuration
