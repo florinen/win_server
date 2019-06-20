@@ -1,1 +1,0 @@
-powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\Scripts\auto_logon.ps1

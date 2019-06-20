@@ -1,1 +1,0 @@
-powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\Scripts\change_hostname.ps1
