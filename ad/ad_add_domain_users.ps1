@@ -8,7 +8,7 @@ $Groups = 'Domain Admins','Domain Users','Administrators','Enterprise Admins','G
 $User = "Admin"
 $AccountPassword = "Summer-01!!!*"
 # Configures script to run once on next logon
-Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
+#Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
 
 Import-Module ActiveDirectory
 New-ADOrganizationalUnit -Name $OrganizationalUnit -City $City -path "dc=$Domain,dc=$DomainEnding"
