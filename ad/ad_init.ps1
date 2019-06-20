@@ -40,6 +40,7 @@ Import-Module ADDSDeployment
 Write-Host " - Creating new AD-Domain-Services Forest..."
 Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -NoRebootOnCompletion:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
 
-Write-Host " - Done.`n"
+Write-Host " - Done. Restarting now `n"
+Start-Sleep -Seconds 20 
 Restart-Computer -Force
 update
