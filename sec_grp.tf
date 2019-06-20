@@ -8,29 +8,31 @@ resource "aws_security_group" "allowed-ports" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "Everything allowed out"
   }
-  #ingress {
-  #  from_port   = 5985
-  #  to_port     = 5986
-  #  protocol    = "tcp"
-  #  cidr_blocks = ["0.0.0.0/0"]
-  #  description = "Allow WinRM from anywhere"
-  #}
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = 5985
+    to_port     = 5986
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     self        = "true"
+    description = "Allow WinRM from anywhere"
   }
   #ingress {
-  #  from_port   = 3389
-  #  to_port     = 3389
-  #  protocol    = "tcp"
+  #  from_port   = 0
+  #  to_port     = 0
+  #  protocol    = "-1"
   #  cidr_blocks = ["0.0.0.0/0"]
-  #  description = "Allow RDP connections"
+  #  self        = "true"
   #}
+  ingress {
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    self        = "true"
+    description = "Allow RDP connections"
+  }
 
   tags = {
-    name = "Allowed-Ports"
+    Name = "Allowed-Ports"
   }
 }
