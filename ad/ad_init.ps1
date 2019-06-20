@@ -9,7 +9,7 @@ $AutoLoginUser = "Administrator"
 $AutoLoginPassword = "test123-Admin"
 $LogPath = "C:\Windows\NTDS"
 $SysvolPath = "C:\Windows\SYSVOL"
-
+$ComputerName = "win-dc01"
 ## Configures script to run once on next logon
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Change_hostname' -Value "c:\windows\system32\cmd.exe /c C:\scripts\change_hostname.bat"
@@ -41,6 +41,6 @@ Write-Host " - Creating new AD-Domain-Services Forest..."
 Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -NoRebootOnCompletion:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
 
 Write-Host " - Done. Restarting now `n"
-Start-Sleep -Seconds 20 
-Restart-Computer -Force
+Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
+
 update
