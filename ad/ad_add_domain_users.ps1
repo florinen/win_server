@@ -17,7 +17,7 @@ New-ADUser -Name $User -AccountPassword $AccountPassword -Description "Acirruste
 #New-ADUser -Path "OU=$OrganizationalUnit,DC=$Domain,DC=$DomainEnding" -Name "Test" -AccountPassword (ConvertTo-SecureString "Summer01!" -AsPlaintext -Force) -Description "Acirrustech test user" -ChangePasswordAtLogon:$False -CannotChangePassword:$True -PasswordNeverExpires:$True -PassThru | Enable-ADAccount
 #New-ADOrganizationalUnit  -Name $OrganizationalUnit -ProtectedFromAccidentalDeletion:$false -path "dc=$Domain,dc=$DomainEnding"
 
-ForEach ($Group in $Groups){
+ForEach ($Group in $Groups) {
     Add-ADGroupMember -Identity $Group -Members $User
 }
 
