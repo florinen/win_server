@@ -9,7 +9,8 @@ $AutoLoginUser = "Administrator"
 $AutoLoginPassword = "test123-Admin"
 $LogPath = "C:\Windows\NTDS"
 $SysvolPath = "C:\Windows\SYSVOL"
-$ComputerName = "win-dc01"
+
+
 ## Configures script to run once on next logon
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Autologon' -Value "c:\windows\system32\cmd.exe /c C:\scripts\auto_logon.bat"
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
