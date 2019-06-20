@@ -3,7 +3,6 @@ $ChildOU = "Users"
 $Domain = "acirrustech"
 $DomainEnding = "com"
 $City = "Chicago"
-$Group = "Administrators"
 $Groups = @('Domain Admins','Domain Users','Administrators','Enterprise Admins','Group Policy Creator Owners','Schema Admins')
 $User = "Admin"
 $AccountPassword = "Summer-01!!!*"
