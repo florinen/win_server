@@ -48,4 +48,3 @@ Restart-Computer -Force
 
 #Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
 
-#update
