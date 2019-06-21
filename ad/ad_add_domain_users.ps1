@@ -21,9 +21,14 @@ New-ADUser -Name $User -AccountPassword (ConvertTo-SecureString $AccountPassword
 #}
 
 #Add-ADPrincipalGroupMembership $User -MemberOf $Group
+
+
+
+ 
 foreach($Group in $Groups) {
-Add-ADGroupMember -Identity $User -MemberOf $Group
+    Add-ADPrincipalGroupMembership $User -MemberOf $Group
 }
+
 #Add-ADGroupMember 'Domain Admins' $User
 
 
