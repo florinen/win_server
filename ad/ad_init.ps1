@@ -14,6 +14,7 @@ $SysvolPath = "C:\Windows\SYSVOL"
 ## Configures script to run once on next logon
 #Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Autologon' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_init.bat"
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
+Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Set-AutoLogon' -Value "c:\windows\system32\cmd.exe /c C:\scripts\auto_logon.bat"
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Change_hostname' -Value "c:\windows\system32\cmd.exe /c C:\scripts\change_hostname.bat"
  
 
@@ -21,7 +22,7 @@ Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name
 # Registry path for Autologon configuration
 $RegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
 
-Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Set-AutoLogon' -Value "c:\windows\system32\cmd.exe /c C:\scripts\auto_logon.bat"
+
 # Autologon configuration including: username, password,domain name and times to try autologon
 Set-ItemProperty $RegPath "AutoAdminLogon" -Value "1" -type String
 Set-ItemProperty $RegPath "DefaultUsername" -Value "$AutoLoginUser" -type String
