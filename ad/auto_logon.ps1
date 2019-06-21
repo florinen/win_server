@@ -1,4 +1,4 @@
-$AutoLoginUser = "acirrustech\Administrator"
+$AutoLoginUser = "devopnet\Administrator"
 $AutoLoginPassword = "test123-Admin"
 
 
