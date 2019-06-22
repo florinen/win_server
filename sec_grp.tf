@@ -9,6 +9,13 @@ resource "aws_security_group" "allowed-ports" {
     description = "Everything allowed out"
   }
   ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    self        = "true"
+  }
+  ingress {
     from_port   = 5985
     to_port     = 5985
     protocol    = "tcp"
@@ -16,13 +23,7 @@ resource "aws_security_group" "allowed-ports" {
     self        = "true"
     description = "Allow WinRM from anywhere"
   }
-  #ingress {
-  #  from_port   = 0
-  #  to_port     = 0
-  #  protocol    = "-1"
-  #  cidr_blocks = ["0.0.0.0/0"]
-  #  self        = "true"
-  #}
+  
   ingress {
     from_port   = 3389
     to_port     = 3389
