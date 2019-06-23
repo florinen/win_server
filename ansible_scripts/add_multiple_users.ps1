@@ -37,9 +37,9 @@ foreach ($User in $ADUsers)
             -ChangePasswordAtLogon $True `
             -DisplayName "$Lastname, $Firstname" `
             -Department $Department `
-            -Path $OU | Enable-ADAccount `
+            -Path $OU `
             -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
-            
+            -SearchBase $OU  | Enable-ADAccount
 
        }
 }
