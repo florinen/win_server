@@ -1,6 +1,6 @@
 $Groups = @('Domain Admins')
 
-Import-Module activedirectory
+
 $ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv"           
 
 foreach ($User in $ADUsers)
@@ -49,5 +49,5 @@ foreach ($User in $ADUsers)
          
 }
 foreach($Group in $Groups) {
-    Add-ADPrincipalGroupMembership $ADUsers -MemberOf $Group
+    Add-ADPrincipalGroupMembership $User -MemberOf $Group
 }
