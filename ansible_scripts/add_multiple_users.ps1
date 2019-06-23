@@ -48,6 +48,6 @@ foreach ($User in $ADUsers)
        }
          
 }
-foreach($Group in $Groups) {
-    Add-ADPrincipalGroupMembership $User -MemberOf $Group
+foreach($User in $ADUsers) {
+    Add-ADPrincipalGroupMembership $User -MemberOf $Groups
 }
