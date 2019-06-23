@@ -1,3 +1,3 @@
-﻿FirstName,LastName,SamAccountName,Phone,Address,Email,Password,Descriprion,Department,OU
-Test1,sam1,t.sam1,7732222222,,sam1@mail,test1234-Sam1,test user,It,"OU=Users,OU=Devopnet,CD=Devopnet,CD=com"
-Test2,sam2,t.sam2,2222222222,,sam2@yahoo.com,test222-PassWord,test user 2,Dev,"OU=Users,OU=Devopnet,CD=Devopnet,CD=com"
+﻿FirstName,LastName,UserName,Phone,Email,Password,Descriprion,Department,OU
+Test1,sam1,t.sam1,7732222222,sam1@mail,test1234-Sam1,test user,DevOps,"OU=Users,OU=Devopnet,CD=Devopnet,CD=com"
+Test2,sam2,t.sam2,2222222222,sam2@yahoo.com,test222-PassWord,test user 2,DevOps,"OU=Users,OU=Devopnet,CD=Devopnet,CD=com"
