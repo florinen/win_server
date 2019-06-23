@@ -1,4 +1,4 @@
-$Users = Import-Csv -Path "C:\Userlist-sn.csv"            
+$Users = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv"            
 foreach ($User in $Users)            
 {            
     $Displayname = $User.Firstname + " " + $User.Lastname            
