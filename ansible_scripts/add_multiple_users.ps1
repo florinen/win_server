@@ -39,8 +39,8 @@ foreach ($User in $ADUsers)
             -Department $Department `
             -Path $OU `
             -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) 
-             
+            -Enabled $True
 
        }
 }
-$ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv" | ForEach-Object {Add-ADGroupMember -Identity "Domain Admins" -Member $_.'UserName'}
+$ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv" | ForEach-Object {Add-ADGroupMember  "Domain Admins" -Member $_.'UserName'}
