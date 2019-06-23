@@ -31,6 +31,7 @@ foreach ($User in $ADUsers)
             -Name "$Firstname $Lastname" `
             -GivenName $Firstname `
             -Surname $Lastname `
+            -Enabled $True `
             -EmailAddress $Email`
             -MobilePhone $Phone `
             -Description $Description `
@@ -38,9 +39,8 @@ foreach ($User in $ADUsers)
             -DisplayName "$Lastname, $Firstname" `
             -Department $Department `
             -Path $OU `
-            -Enabled $True `
-            -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
-            -passThru 
+            -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) 
+             
             
 
        }
