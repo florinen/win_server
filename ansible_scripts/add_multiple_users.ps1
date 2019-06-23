@@ -34,12 +34,12 @@ foreach ($User in $ADUsers)
             -EmailAddress $Email`
             -MobilePhone $Phone `
             -Description $Description `
-            -Enabled $True `
             -ChangePasswordAtLogon $True `
             -DisplayName "$Lastname, $Firstname" `
             -Department $Department `
             -Path $OU `
-            -AccountPassword (convertto-securestring $Password -AsPlainText -Force)
+            -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
+            -Enabled $True 
 
        }
 }
