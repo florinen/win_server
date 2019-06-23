@@ -1,4 +1,4 @@
-$Groups = @('Domain Admins')
+
 
 
 $ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv"           
@@ -28,23 +28,22 @@ foreach ($User in $ADUsers)
           
         #Account will be created in the OU listed in the $OU variable in the CSV file; don’t forget to change the domain name in the"-UserPrincipalName" variable
               New-ADUser `
-            -SamAccountName $Username `
-            -UserPrincipalName "$Username@devopnet.com" `
-            -Name "$Firstname $Lastname" `
-            -GivenName $Firstname `
-            -Surname $Lastname `
-            -EmailAddress $Email `
-            -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
-            -Description $Description `
-            -ChangePasswordAtLogon $True `
-            -DisplayName "$Lastname, $Firstname" `
-            -Department $Department `
-            -Path $OU `
-            -Enabled $True 
+              -GivenName $Firstname `
+              -Surname $Lastname `
+              -SamAccountName $Username `
+              -MobilePhone $Phone
+              -EmailAddress $Email `
+              -UserPrincipalName "$Username@devopnet.com" `
+              -Name "$Firstname $Lastname" `
+              -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
+              -Description $Description `
+              -ChangePasswordAtLogon $True `
+              -DisplayName "$Lastname, $Firstname" `
+              -Department $Department `
+              -Path $OU `
+              -Enabled $True 
 
        }
          
 }
-foreach($User in $ADUsers) {
-    Add-ADPrincipalGroupMembership $User -MemberOf $Groups
-}
+ 
