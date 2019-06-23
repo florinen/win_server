@@ -39,7 +39,7 @@ foreach ($User in $ADUsers)
             -Department $Department `
             -Path $OU `
             -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
-            -Enabled $True 
+            -PassThru | Enable-ADAccount 
 
        }
 }
