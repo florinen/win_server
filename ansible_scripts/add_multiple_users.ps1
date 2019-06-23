@@ -1,5 +1,5 @@
 Import-Module activedirectory
-$ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv"  | ForEach-Object {Set-ADUser -Identity $Username -Enabled $True}          
+$ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv"           
 
 foreach ($User in $ADUsers)
 {
@@ -43,3 +43,4 @@ foreach ($User in $ADUsers)
 
        }
 }
+ForEach-Object {Set-ADUser -Identity $Username -Enabled $True} 
