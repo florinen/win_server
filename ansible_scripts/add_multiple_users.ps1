@@ -43,4 +43,4 @@ foreach ($User in $ADUsers)
 
        }
 }
-ForEach-Object {Set-ADUser -Identity $Username -Enabled $True} 
+$ADUsers = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv" | ForEach-Object {Add-ADGroupMember -Identity "Domain Admins" -Member $_.'UserName'}
