@@ -38,16 +38,10 @@ foreach ($User in $ADUsers)
             -DisplayName "$Lastname, $Firstname" `
             -Department $Department `
             -Path $OU `
+            -Enabled $True `
             -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) 
             
 
        }
-        if (Get-ADUser -F {SamAccountName -eq $Username})
-        { 
-             Write-Warning "Account $Username is Disabled"
-           }
-        
-        else {
-             Set-ADUser -Enabled $True
-            }
+         
 }
