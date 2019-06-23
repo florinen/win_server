@@ -28,13 +28,12 @@ foreach ($User in $ADUsers)
           
         #Account will be created in the OU listed in the $OU variable in the CSV file; don’t forget to change the domain name in the"-UserPrincipalName" variable
               New-ADUser `
-            -GivenName $Firstname `
-            -Surname $Lastname `
             -SamAccountName $Username `
-            -MobilePhone $Phone
-            -EmailAddress $Email `
             -UserPrincipalName "$Username@devopnet.com" `
             -Name "$Firstname $Lastname" `
+            -GivenName $Firstname `
+            -Surname $Lastname `
+            -EmailAddress $Email `
             -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
             -Description $Description `
             -ChangePasswordAtLogon $True `
