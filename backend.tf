@@ -1,7 +1,7 @@
 terraform {
-  backend "s3" {
-    bucket = "kube.omegnet.com"
-    key    = "windows/win16-srv.tfstate"
-    region = "eu-west-1"
+ backend "s3" {
+    bucket = "acirrustech-iaac" 
+    region = "us-east-1" 
+    key    = "win-dc01/infra"
   }
 }

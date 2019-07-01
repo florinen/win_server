@@ -1,6 +1,6 @@
-$OrganizationalUnit = "Devopnet"
+$OrganizationalUnit = "Acirrustech"
 $ChildOU = "Users"
-$Domain = "devopnet"
+$Domain = "acirrustech"
 $DomainEnding = "com"
 $City = "Chicago"
 $Groups = @('Domain Admins','Domain Users','Administrators','Enterprise Admins','Group Policy Creator Owners','Schema Admins')

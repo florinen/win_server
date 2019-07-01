@@ -1,12 +1,12 @@
 
-resource "aws_key_pair" "my_key" {
-    key_name = "my_key"
-    public_key = "${file("~/.ssh/my-keys/bastion_key.pub")}"
-}
+# resource "aws_key_pair" "my_key" {
+#     key_name = "my_key"
+#     public_key = "${file("/ssh_keys/app_rsa.pub")}"
+# }
 
 ### Bootstrap instance for WinRM over HTTP with basic authentication
 data "template_file" "userdata" {
-  template =   "${file("~/windows/win_server/data.tpl")}"
+  template =   "${file("~/infrastructure/win_server/data.tpl")}"
   vars = {
       admin_password = "${var.admin_password}"   #pass variables into template
   }
@@ -15,7 +15,7 @@ data "template_file" "userdata" {
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "${var.INSTANCE_TYPE}"
-    key_name = "${aws_key_pair.my_key.key_name}"
+    key_name = "app-rsa"
     availability_zone = "${var.AZ}"
     user_data = "${data.template_file.userdata.rendered}" 
     vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
@@ -31,7 +31,7 @@ resource "aws_instance" "win16-srv" {
   }
   ### Copy Scripts to EC2 instance ###
   provisioner "file" {
-    source      = "~/windows/win_server/ad/"
+    source      = "~/infrastructure/win_server/ad"
     destination = "C:\\scripts"
  
     connection {
@@ -79,3 +79,7 @@ resource "aws_instance" "win16-srv" {
 
 
 
+
+
+
+ 
