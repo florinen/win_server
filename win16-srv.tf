@@ -6,7 +6,7 @@
 
 ### Bootstrap instance for WinRM over HTTP with basic authentication
 data "template_file" "userdata" {
-  template =   "${file("~/infrastructure/win_server/data.tpl")}"
+  template =   "${file("data.tpl")}"
   vars = {
       admin_password = "${var.admin_password}"   #pass variables into template
   }
