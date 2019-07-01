@@ -1,0 +1,27 @@
+## This playbook will reed the CSV file and add users to AD from the file.
+---
+- hosts: server
+  tasks:
+  - name: Read users from CSV file and return a dictionary
+    read_csv:
+      path: add_multiple_users.csv
+    register: users
+    delegate_to: localhost
+
+  - name: Add users
+    win_domain_user:
+      name: "{{ item.FirstName }}"
+      surname: "{{ item.LastName }}"
+      company: Acirrustech
+      username: "{{ item.UserName }}"
+      password: "{{ item.Password }}"
+      state: present
+      path: "{{ item.OU }}"
+      # groups:
+      #  - Domain Admins
+      #  - Administrators
+      #  - Enterprise Admins
+      email: "{{ item.Email }}"
+  # debug:
+  #     msg: "{{ item.Department }}"
+    loop: "{{  users.list  }}"

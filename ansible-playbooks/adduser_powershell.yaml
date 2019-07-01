@@ -1,0 +1,11 @@
+## This playbook will upload your PowerShell script to windows AD and run it there. Will add users from CSV file
+---
+- hosts: server
+  tasks:
+    - name: copying file
+      win_copy:
+        src: ~/infrastructure/win_server/ansible_scripts
+        dest: C:\Scripts
+
+    - name: Add users from script
+      win_shell: C:\Scripts\ansible_scripts\add_multiple_users.ps1 >> C:\Scripts\ansible_scripts\add_user_log.txt
