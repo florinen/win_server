@@ -1,7 +1,7 @@
 ---
 - hosts: server
   tasks:
-    - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+    - name: Add user to AD
       win_domain_user:
         name: Bob
         surname: Smith
