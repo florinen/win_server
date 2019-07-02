@@ -1,8 +1,8 @@
 
-# resource "aws_key_pair" "my_key" {
-#     key_name = "my_key"
-#     public_key = "${file("/ssh_keys/app_rsa.pub")}"
-# }
+resource "aws_key_pair" "win_key" {
+    key_name = "win_key"
+    public_key = "${file("~/.ssh/win-dc01.pub")}"
+}
 
 ### Bootstrap instance for WinRM over HTTP with basic authentication
 data "template_file" "userdata" {
@@ -15,7 +15,7 @@ data "template_file" "userdata" {
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "${var.INSTANCE_TYPE}"
-    key_name = "app-rsa"
+    key_name = "win_key"
     availability_zone = "${var.AZ}"
     user_data = "${data.template_file.userdata.rendered}" 
     vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
