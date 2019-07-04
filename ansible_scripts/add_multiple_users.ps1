@@ -8,7 +8,7 @@ foreach ($User in $ADUsers)
        $Firstname   = $User.FirstName
        $Lastname    = $User.LastName
        $Username    = $User.UserName
-       $Phone       = $User.Phone
+       #$Phone       = $User.Phone
        $Email       = $User.Email
        $Password    = $User.Password
        $Description = $User.Description 
