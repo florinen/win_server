@@ -1,1 +1,1 @@
-powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\Scripts\configure_remoting_for_ansible.ps1
+powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\Scripts\configure_remoting_for_ansible.ps1 > configure_remoting_for_ansible.txt

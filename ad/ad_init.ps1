@@ -14,7 +14,7 @@ $SysvolPath = "C:\Windows\SYSVOL"
 
 ## Configures script to run once on next logon
 
-Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
+Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat "
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Configure_Remoting_For_Ansible' -Value "c:\windows\system32\cmd.exe /c C:\scripts\configure_remoting_for_ansible.bat"
 #Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Change_hostname' -Value "c:\windows\system32\cmd.exe /c C:\scripts\change_hostname.bat"
  
@@ -31,7 +31,8 @@ Set-ItemProperty $RegPath "DefaultPassword" -Value "$AutoLoginPassword" -type St
 Set-ItemProperty $RegPath "DefaultDomainName" -Value "$NetBIOSName" -type String
 Set-ItemProperty $RegPath "AutoLogonCount" -Value "3" -type DWord
 
-
+Write-Host "Changing  hostname.."
+Rename-Computer -NewName $NewComputerName
 
 Write-Host "Windows Server 2016 - Active Directory Installation"
 
@@ -52,11 +53,10 @@ Install-ADDSForest -CreateDNSDelegation:$False `
                    -SysvolPath:$SysvolPath `
                    -Confirm:$False
 
-Write-Host "Changing  hostname.."
-Rename-Computer -NewName $NewComputerName
+
 
 Write-Host " - Done. Restarting now!! `n"
-Start-Sleep -Seconds 5
+# Start-Sleep -Seconds 5
 Restart-Computer -Force
 
 #Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
