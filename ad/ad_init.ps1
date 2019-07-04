@@ -6,7 +6,7 @@ $DomainMode = "WinThreshold"
 $ForestMode = "WinThreshold"
 $SafeModeAdministratorPassword = ConvertTo-SecureString "test123-Admin" -AsPlaintext -Force  #This is the Directory Services Restore Mode (DSRM)
 $AutoLoginUser = "acirrustech\Administrator"
-$AutoLoginPassword = "test123-Admin"
+$AutoLoginPassword = "test123-Admin!!"
 $LogPath = "C:\Windows\NTDS"
 $SysvolPath = "C:\Windows\SYSVOL"
 
