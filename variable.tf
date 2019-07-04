@@ -13,6 +13,3 @@ variable "admin_password" {
  }
 
 
-variable "AutoLoginPassword" {}
-variable "SafeModeAdministratorPassword" {}
-variable "AutoLoginUser" { } 
