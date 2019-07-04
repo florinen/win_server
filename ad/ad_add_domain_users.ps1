@@ -7,7 +7,7 @@ $City = "Chicago"
 #$User = "Admin"
 #$AccountPassword = "Summer-01!!!*"
 $OU = "OU=$ChildOU,OU=$OrganizationalUnit,DC=$Domain,DC=$DomainEnding"
-
+$Username = "UserName"
 
 
 Import-Module ActiveDirectory
@@ -27,7 +27,7 @@ foreach ($User in $UserList) {
 
         Name = "$($User.FirstName) $($User.LastName)"
         UserPrincipalName = "$($User.FirstName).$($User.LastName)@$Domain.$DomainEnding"
-        SamAccountName = "$($User.FirstName).$($User.LastName)"
+        SamAccountName = $Username
 
         GivenName = $User.FirstName
         Surname = $User.LastName
@@ -42,6 +42,8 @@ foreach ($User in $UserList) {
     New-ADUser @Attributes
 
 }
+
+
 
 
 
