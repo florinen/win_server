@@ -4,7 +4,6 @@ $DomainName = "acirrustech.com"
 $NetBIOSName = "acirrustech"
 $DomainMode = "WinThreshold"
 $ForestMode = "WinThreshold"
-$NewComputerName = "win-dc01"
 $SafeModeAdministratorPassword = ConvertTo-SecureString "test123-Admin" -AsPlaintext -Force  #This is the Directory Services Restore Mode (DSRM)
 $AutoLoginUser = "Administrator"
 $AutoLoginPassword = "test123-Admin!!"
@@ -52,11 +51,10 @@ Install-ADDSForest -CreateDNSDelegation:$False `
                    -SysvolPath:$SysvolPath `
                    -Confirm:$False
 
-Write-Host "Changing  hostname.."
-Rename-Computer -NewName $NewComputerName  
-                
+x 
+
 Write-Host " - Done. Restarting now!! `n"
-# Start-Sleep -Seconds 5
+Start-Sleep -Seconds 5
 Restart-Computer -Force
 
 #Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
