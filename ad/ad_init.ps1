@@ -42,15 +42,21 @@ Install-windowsfeature -name AD-Domain-Services -IncludeManagementTools
 Import-Module ADDSDeployment
 
 Write-Host " - Creating new AD-Domain-Services Forest..."
-Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -NoRebootOnCompletion:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
+Install-ADDSForest -CreateDNSDelegation:$False 
+                   -SafeModeAdministratorPassword $SafeModeAdministratorPassword 
+                   -DomainName $DomainName -DomainMode $DomainMode 
+                   -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName 
+                   -InstallDNS:$True 
+                   -NoRebootOnCompletion:$True 
+                   -LogPath:$LogPath 
+                   -SysvolPath:$SysvolPath 
+                   -Confirm:$False
 
 Write-Host "Changing  hostname.."
-
 Rename-Computer -NewName $NewComputerName
-Start-Sleep -Seconds 5
-
 
 Write-Host " - Done. Restarting now!! `n"
+Start-Sleep -Seconds 5
 Restart-Computer -Force
 
 #Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
