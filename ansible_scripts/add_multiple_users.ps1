@@ -27,18 +27,18 @@ foreach ($User in $ADUsers)
               #If a user does not exist then create a new user account
           
         #Account will be created in the OU listed in the $OU variable in the CSV file; don’t forget to change the domain name in the"-UserPrincipalName" variable
-       New-ADUser -SamAccountName $Username 
-                  -UserPrincipalName "$Username@devopnet.com" 
-                  -Name "$Firstname $Lastname" 
-                  -GivenName $Firstname 
-                  -Surname $Lastname 
-                  -EmailAddress $Email
-                  -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
-                  -Description $Description
-                  -ChangePasswordAtLogon $True
-                  -DisplayName "$Lastname, $Firstname"
-                  -Department $Department
-                  -Path $OU
+       New-ADUser -SamAccountName $Username `
+                  -UserPrincipalName "$Username@acirrustech.com" `
+                  -Name "$Firstname $Lastname" `
+                  -GivenName $Firstname `
+                  -Surname $Lastname `
+                  -EmailAddress $Email `
+`                 -AccountPassword (convertTo-securestring $Password -AsPlainText -Force) `
+                  -Description $Description `
+                  -ChangePasswordAtLogon $True `
+                  -DisplayName "$Lastname, $Firstname" `
+                  -Department $Department `
+                  -Path $OU `
                   -Enabled $True 
 
        }
