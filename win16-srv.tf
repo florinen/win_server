@@ -11,13 +11,21 @@ data "template_file" "userdata" {
       admin_password = "${var.admin_password}"   #pass variables into template
   }
 }
-
+data "template_file" "user_data" {
+  template = "${file("user_data.tpl")}"
+  vars {
+      AutoLoginPassword = "${var.AutoLoginPassword}"
+      SafeModeAdministratorPassword  = "${var.SafeModeAdministratorPassword}"
+      AutoLoginUser = "${var.AutoLoginUser}"
+  }
+}
 resource "aws_instance" "win16-srv" {
     ami = "${var.WIN_AMIS}"
     instance_type = "${var.INSTANCE_TYPE}"
     key_name = "win_key"
     availability_zone = "${var.AZ}"
-    user_data = "${data.template_file.userdata.rendered}" 
+    user_data = ["${data.template_file.userdata.rendered}",
+                 "${data.template_file.user_data.rendered}"] 
     vpc_security_group_ids=["${aws_security_group.allowed-ports.id}"]
 
     root_block_device {

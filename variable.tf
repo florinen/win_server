@@ -11,3 +11,8 @@ variable "admin_user" { }
 variable "admin_password" {
     description = "Windows Administrator password to login as"
  }
+
+
+variable "AutoLoginPassword" {}
+variable "SafeModeAdministratorPassword" {}
+variable "AutoLoginUser" { } 
