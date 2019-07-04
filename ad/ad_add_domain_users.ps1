@@ -15,7 +15,7 @@ New-ADOrganizationalUnit -Name $OrganizationalUnit -City $City -path "DC=$Domain
 New-ADOrganizationalUnit -Name $ChildOU -path "OU=$OrganizationalUnit,DC=$Domain,DC=$DomainEnding" 
 
  
-$UserList = Import-Csv -Path "C:\scripts\ansible_scripts\add_multiple_users.csv"  
+$UserList = Import-Csv -Path "C:\scripts\add_multiple_users.csv"  
 
 foreach ($User in $UserList) {
 
