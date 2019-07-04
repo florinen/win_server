@@ -57,5 +57,5 @@ Write-Host " - Done. Restarting now!! `n"
 Start-Sleep -Seconds 5
 Restart-Computer -Force
 
-#Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
+
 
