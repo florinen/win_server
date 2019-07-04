@@ -15,7 +15,7 @@
 
 #Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'AD_Create_users' -Value "c:\windows\system32\cmd.exe /c C:\scripts\ad_add_domain_users.bat"
 Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Configure_Remoting_For_Ansible' -Value "c:\windows\system32\cmd.exe /c C:\scripts\configure_remoting_for_ansible.bat"
-Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Change_hostname' -Value "c:\windows\system32\cmd.exe /c C:\scripts\change_hostname.bat"
+#Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name 'Change_hostname' -Value "c:\windows\system32\cmd.exe /c C:\scripts\change_hostname.bat"
  
 
 
@@ -42,6 +42,12 @@ Import-Module ADDSDeployment
 
 Write-Host " - Creating new AD-Domain-Services Forest..."
 Install-ADDSForest -CreateDNSDelegation:$False -SafeModeAdministratorPassword $SafeModeAdministratorPassword -DomainName $DomainName -DomainMode $DomainMode -ForestMode $ForestMode -DomainNetBiosName $NetBIOSName -InstallDNS:$True -NoRebootOnCompletion:$True -LogPath:$LogPath -SysvolPath:$SysvolPath -Confirm:$False
+
+Write-Host "Changing  hostname.."
+$NewComputerName = "win-dc01"
+Rename-Computer -NewName $NewComputerName
+Start-Sleep -Seconds 5
+
 
 Write-Host " - Done. Restarting now!! `n"
 Restart-Computer -Force
