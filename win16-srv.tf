@@ -62,10 +62,18 @@ resource "aws_instance" "win16-srv" {
             
     ]
   }
+  
   tags = {
       Name = "Win16-SRV"
   }
 }
+resource "aws_eip" "eip" {
+    instance = "${aws_instance.win16-srv.id}"
+    
+    tags = {
+      Name = "Static IP Win16-srv"
+  }
+   }
 
 
 
