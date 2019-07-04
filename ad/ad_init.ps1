@@ -36,14 +36,8 @@ Set-ItemProperty $RegPath "AutoLogonCount" -Value "3" -type DWord
 Write-Host "Windows Server 2016 - Active Directory Installation"
 
 Write-Host " - Installing AD-Domain-Services..."
-Install-WindowsFeature -Name GPMC
-                       -RSAT-AD-PowerShell
-                       -RSAT-AD-AdminCenter
-                       -RSAT-ADDS-Tools
-                       -RSAT-DNS-Server
-
-Install-windowsfeature  -name AD-Domain-Services 
-                        -IncludeManagementTools
+Install-WindowsFeature -Name GPMC,RSAT-AD-PowerShell,RSAT-AD-AdminCenter,RSAT-ADDS-Tools,RSAT-DNS-Server
+Install-windowsfeature -name AD-Domain-Services -IncludeManagementTools
 
 Import-Module ADDSDeployment
 
@@ -65,4 +59,5 @@ Write-Host " - Done. Restarting now!! `n"
 Start-Sleep -Seconds 5
 Restart-Computer -Force
 
+#Restart-Computer -ComputerName $ComputerName -Wait -For PowerShell -Timeout 300 -Delay 2
 
