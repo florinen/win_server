@@ -43,38 +43,11 @@ foreach ($User in $UserList) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# New-ADUser -Name $User `
-#             AccountPassword (ConvertTo-SecureString $AccountPassword -AsPlaintext -Force) `
-#             Path $OU `
-#             Description "Acirrustech test user" `
-#             ChangePasswordAtLogon:$False `
-#             CannotChangePassword:$True `
-#             PasswordNeverExpires:$True `
-#             Enabled $True 
-
-
 # foreach($Group in $Groups) {
 #     Add-ADPrincipalGroupMembership $User -MemberOf $Group
 # }
 
 #Add-ADGroupMember 'Domain Admins' $User
 
-#New-ADUser -Path "OU=$OrganizationalUnit,DC=$Domain,DC=$DomainEnding" -Name "Test" -AccountPassword (ConvertTo-SecureString "Summer01!" -AsPlaintext -Force) -Description "Acirrustech test user" -ChangePasswordAtLogon:$False -CannotChangePassword:$True -PasswordNeverExpires:$True -PassThru | Enable-ADAccount
 
 
