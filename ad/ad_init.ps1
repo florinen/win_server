@@ -4,12 +4,9 @@ $DomainName = "acirrustech.com"
 $NetBIOSName = "acirrustech"
 $DomainMode = "WinThreshold"
 $ForestMode = "WinThreshold"
-SafeModeAdministratorPassword=${SafeModeAdministratorPassword}  
-AutoLoginUser=${AutoLoginUser}
-AutoLoginPassword=${AutoLoginPassword}
-#$SafeModeAdministratorPassword = ConvertTo-SecureString "test123-Admin" -AsPlaintext -Force  #This is the Directory Services Restore Mode (DSRM)
-# $AutoLoginUser = "acirrustech\Administrator"
-# $AutoLoginPassword = "test123-Admin"
+$SafeModeAdministratorPassword = ConvertTo-SecureString "test123-Admin" -AsPlaintext -Force  #This is the Directory Services Restore Mode (DSRM)
+$AutoLoginUser = "acirrustech\Administrator"
+$AutoLoginPassword = "test123-Admin"
 $LogPath = "C:\Windows\NTDS"
 $SysvolPath = "C:\Windows\SYSVOL"
 
