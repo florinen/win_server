@@ -14,7 +14,7 @@ Import-Module ActiveDirectory
 New-ADOrganizationalUnit -Name $OrganizationalUnit -City $City -path "DC=$Domain,DC=$DomainEnding"
 New-ADOrganizationalUnit -Name $ChildOU -path "OU=$OrganizationalUnit,DC=$Domain,DC=$DomainEnding" 
 New-ADUser  -Name $User `
-            -AccountPassword (ConvertTo-SecureString $AccountPassword -AsPlaintext -Force) ` 
+            -AccountPassword (ConvertTo-SecureString $AccountPassword -AsPlaintext -Force) `
             -PasswordNeverExpires:$True `
             -Path $OU `
             -Description "Acirrustech test user" `
