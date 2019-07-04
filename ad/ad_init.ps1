@@ -51,7 +51,7 @@ Install-ADDSForest -CreateDNSDelegation:$False `
                    -SysvolPath:$SysvolPath `
                    -Confirm:$False
 
-x 
+
 
 Write-Host " - Done. Restarting now!! `n"
 Start-Sleep -Seconds 5
