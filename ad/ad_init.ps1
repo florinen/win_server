@@ -31,8 +31,7 @@ Set-ItemProperty $RegPath "DefaultPassword" -Value "$AutoLoginPassword" -type St
 Set-ItemProperty $RegPath "DefaultDomainName" -Value "$NetBIOSName" -type String
 Set-ItemProperty $RegPath "AutoLogonCount" -Value "3" -type DWord
 
-Write-Host "Changing  hostname.."
-Rename-Computer -NewName $NewComputerName
+
 
 Write-Host "Windows Server 2016 - Active Directory Installation"
 
@@ -53,8 +52,9 @@ Install-ADDSForest -CreateDNSDelegation:$False `
                    -SysvolPath:$SysvolPath `
                    -Confirm:$False
 
-
-
+Write-Host "Changing  hostname.."
+Rename-Computer -NewName $NewComputerName  
+                
 Write-Host " - Done. Restarting now!! `n"
 # Start-Sleep -Seconds 5
 Restart-Computer -Force
