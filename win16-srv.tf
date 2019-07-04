@@ -9,9 +9,9 @@ data "template_file" "userdata" {
   template =   "${file("data.tpl")}"
   vars = {
       admin_password = "${var.admin_password}"   #pass variables into template
-      AutoLoginPassword = "${var.AutoLoginPassword}"
-      SafeModeAdministratorPassword  = "${var.SafeModeAdministratorPassword}"
-      AutoLoginUser = "${var.AutoLoginUser}"
+      # AutoLoginPassword = "${var.AutoLoginPassword}"
+      # SafeModeAdministratorPassword  = "${var.SafeModeAdministratorPassword}"
+      # AutoLoginUser = "${var.AutoLoginUser}"
   }
 }
 # data "template_file" "user_data" {
@@ -65,7 +65,7 @@ resource "aws_instance" "win16-srv" {
      }
      inline = [
       "powershell.exe Set-ExecutionPolicy RemoteSigned -force",
-      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1",
+      "powershell.exe -version 4 -ExecutionPolicy Bypass -File C:\\scripts\\ad_init.ps1 ${var.AutoLoginUser} ${var.AutoLoginPassword} ${var.SafeModeAdministratorPassword}"
             
     ]
   }
