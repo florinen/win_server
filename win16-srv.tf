@@ -13,7 +13,7 @@ data "template_file" "userdata" {
 }
 data "template_file" "user_data" {
   template = "${file("user_data.tpl")}"
-  vars {
+  vars = {
       AutoLoginPassword = "${var.AutoLoginPassword}"
       SafeModeAdministratorPassword  = "${var.SafeModeAdministratorPassword}"
       AutoLoginUser = "${var.AutoLoginUser}"
