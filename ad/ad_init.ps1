@@ -36,11 +36,12 @@ Set-ItemProperty $RegPath "AutoLogonCount" -Value "3" -type DWord
 Write-Host "Windows Server 2016 - Active Directory Installation"
 
 Write-Host " - Installing AD-Domain-Services..."
-Install-WindowsFeature -Name GPMC,RSAT-AD-PowerShell
+Install-WindowsFeature -Name GPMC
+                       -RSAT-AD-PowerShell
                        -RSAT-AD-AdminCenter
                        -RSAT-ADDS-Tools
                        -RSAT-DNS-Server
-                       
+
 Install-windowsfeature  -name AD-Domain-Services 
                         -IncludeManagementTools
 
