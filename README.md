@@ -7,6 +7,6 @@ Some scripts will also be executed like 'ansible script' to get windows ready fo
 There is also a powershell script that will add bulk users to AD from CSV file if you need when you first deploy AD. Keep in mind that this file 'CSV file' will have sensitive info and treat it different.
 
 References:
-``` 
+
  https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-aduser?view=win10-ps
  https://docs.ansible.com/ansible/latest/user_guide/windows.html
