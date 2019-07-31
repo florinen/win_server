@@ -1,0 +1,16 @@
+---
+- hosts: server
+  tasks:
+    - name: Add user to AD
+      win_domain_user:
+        name: Bob
+        surname: Smith
+        company: Acirrustech
+        username: bsmith
+        password: B0bP-*4ssw0rd
+        state: present
+        path: OU=Users,OU=Acirrustech,DC=acirrustech,DC=com
+        #groups:
+         # - Domain Admins
+        email: bob@example.com
+        city: Chicago
